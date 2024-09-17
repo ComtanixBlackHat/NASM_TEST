@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <style>
+    .table-container {
+      margin-top: 20px;
+    }
+
+    .signature {
+      padding: 20px 0;
+    }
+
+    .section {
+      display: none;
+      /* Removed max-width and centering to allow full width */
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* Prevent horizontal overflow */
+    body,
+    html {
+      overflow-x: hidden;
+    }
+
+    .container-fluid,
+    .container {
+      /* Removed max-width and centering to allow full width */
+    }
+
+    @media print {
+      /* Hide the sidebar when printing */
+      #sidebar {
+        display: none;
+      }
+
+      /* Hide the header when printing */
+      #header {
+        display: none;
+      }
+
+      /* Make the main content take full width when printing */
+      .main {
+        margin-left: 0;
+      }
+
+      /* Adjust the main content width */
+      body {
+        margin: 0;
+      }
+
+      /* Hide navigation buttons when printing */
+      .navigation,
+      .back-to-top {
+        display: none;
+      }
+
+      /* Adjust any other elements as needed */
+    }
+  </style>
+
+  <!-- Favicons -->
+  <link href="/panel/img/favicon.png" rel="icon">
+  <link href="/panel/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/panel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/panel/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/panel/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/panel/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/panel/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/panel/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="/panel/logo/headerlogo.jpg" class="d-flex align-items-center" style="height: fit-content;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+  </header>
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <!-- Sidebar navigation items -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/procurments/dashboard/memo">
+          <i class="bi bi-grid"></i>
+          <span>Memo</span>
+        </a>
+      </li><!-- End Memo Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/procurments/dashboard/spd1">
+          <i class="bi bi-grid"></i>
+          <span>SPF 1</span>
+        </a>
+      </li><!-- End SPF1 Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/procurments/dashboard/eva">
+          <i class="bi bi-grid"></i>
+          <span>EVA</span>
+        </a>
+      </li><!-- End EVA Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#rfqSubmenu" role="button" aria-expanded="false"
+          aria-controls="rfqSubmenu">
+          <i class="bi bi-grid"></i>
+          <span>RFQ</span>
+        </a>
+        <ul id="rfqSubmenu" class="collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a class="nav-link" href="/procurments/dashboard">
+              <span class="sub-span">Request for Good</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/procurments/dashboard/work">
+              <span class="sub-span">Work</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/procurments/dashboard/services">
+              <span class="sub-span">Services</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End RFQ Nav -->
+
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard/lpo">
+          <i class="bi bi-grid"></i>
+          <span>LPO</span>
+        </a>
+      </li><!-- End LPO Nav -->
+
+      <!-- Logout Button -->
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/login">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Logout Nav -->
+    </ul>
+  </aside><!-- End Sidebar-->
+
+  <!-- Removed inline padding-left style -->
+  <main id="main" class="main ">
+    <!-- Section One -->
+    <div id="SectionOne" class="section active">
+      <h4>National Medical Agency</h4>
+      <div class="container">
+        <!-- Heading -->
+        <h3 class="text-center"><strong>REQUEST FOR QUOTATIONS (FOR SERVICES)</strong></h3>
+        <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+          <tr>
+            <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+          </tr>
+        </table>
+        <!-- Procurement Details Table -->
+        <div class="table-responsive" style="overflow-x: auto;">
+          <table class="table table-bordered" style="min-width: 800px; border: 1px solid #000; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th>Procuring Entity</th>
+                <th>Department/PROJECT</th>
+                <th>Sequence Number</th>
+                <th>Bid/RFQ/RFP No</th>
+                <th>Contract/PO No</th>
+                <th>FY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="procuring_entity" value="NMSA" class="form-control"></td>
+                <td><input type="text" name="department" value="Operations" class="form-control"></td>
+                <td><input type="text" name="sequence_number" value="0031" class="form-control"></td>
+                <td><input type="text" name="bid_number" value="0031" class="form-control"></td>
+                <td><input type="text" name="contract_number" value="033" class="form-control"></td>
+                <td><input type="text" name="fy" value="2024" class="form-control"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Quotation Details -->
+        <div>
+          <p>To: <span contenteditable="true">........................................</span></p>
+          <p><span contenteditable="true">........................................</span></p>
+          <p><span contenteditable="true">........................................</span></p>
+          <p class="text-end">Date: <input type="date"></p>
+
+          <p>The National Medical Supplies Agency invites you to submit your quotation for carrying out the whole of the services as described in the TOR herein. Any resulting order shall be subject to the General Conditions of Contract for Local Purchase Orders (available on request) except where modified by this RFQ.</p>
+
+          <!-- Section A: Quotation Requirements -->
+          <h4><strong>SECTION A: QUOTATION REQUIREMENTS</strong></h4>
+
+          <ol>
+            <li><b>Description of Services and Location:</b> Forklifts Repairs and Maintenance at Fawaz Stores Ferry Junction</li>
+            <li>Service is to commence on: <input type="date"></li>
+            <li>Services are to be completed by: <input type="date"></li>
+            <li>Quotations must be valid for Forty-five (45) days from the Return Date given below.</li>
+            <li>Quotations and supporting documents as specified in the TOR must be marked with the Procurement Number given above and indicate acceptance of the stated terms and conditions.</li>
+            <li>Quotations must be received, in sealed envelopes, no later than: <b><input type="datetime-local" name="submission_deadline" value="2024-07-17T12:00" class="form-control d-inline-block w-auto"></b>.</li>
+            <li>Quotations must be returned to:</li>
+          </ol>
+
+          <!-- Address -->
+          <address style="margin-left: 5%;">
+            The Procurement Department<br>
+            National Medical Supplies Agency<br>
+            31 Murray Town Road<br>
+            Freetown, <span style="color: green;">Sierra Leone</span>
+          </address>
+
+          <ol start="8">
+            <li>The attached Schedule of Rates and Prices at Section C and Technical Data at Section D detail the services to be performed. You are requested to quote by completing Sections B, C, and D.</li>
+            <li>Payments will be made within Forty-five (45) days of receipt of an invoice supported by a certificate of satisfactory completion signed by the Deputy Managing Director, NMSA.</li>
+            <li>Quotations that are responsive, qualified, and technically compliant will be ranked according to price. A Local Purchase Order will be issued to the lowest-priced quotation.</li>
+          </ol>
+
+          <div class="d-flex align-items-center">
+            <p class="mb-0"><strong>Signed:</strong></p>
+            <input type="file" id="signatureInput" accept="image/*" style="display: none;" onchange="showSignature(this)">
+            <!-- Placeholder for the image preview or text input -->
+            <div id="signaturePreview" class="form-control w-75 text-center ms-3" style="cursor: pointer;" onclick="document.getElementById('signatureInput').click();">
+              Click to upload signature
+            </div>
+          </div>
+          <br>
+          <p><input type="text" value="Idrissa Sankoh"></p>
+          <p><input style="width: 100%;" type="text" value="Assistant Procurement Officer, NMSA."></p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Two -->
+    <div id="SectionTwo" class="section">
+      <h3>National Medical Supplies Agency</h3>
+      <div class="container">
+        <!-- Procurement Details Table -->
+        <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+          <tr>
+            <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+          </tr>
+        </table>
+        <!-- Procurement Details Table -->
+        <div class="table-responsive" style="overflow-x: auto;">
+          <table class="table table-bordered" style="min-width: 800px; border: 1px solid #000; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th>Procuring Entity</th>
+                <th>Department/PROJECT</th>
+                <th>Sequence Number</th>
+                <th>Bid/RFQ/RFP No</th>
+                <th>Contract/PO No</th>
+                <th>FY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="procuring_entity" value="NMSA" class="form-control"></td>
+                <td><input type="text" name="department" value="Operations" class="form-control"></td>
+                <td><input type="text" name="sequence_number" value="0031" class="form-control"></td>
+                <td><input type="text" name="bid_number" value="0031" class="form-control"></td>
+                <td><input type="text" name="contract_number" value="033" class="form-control"></td>
+                <td><input type="text" name="fy" value="2024" class="form-control"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>SECTION B: QUOTATION DETAILS</h4>
+        <ol>
+          <li>Currency of Quotation: <input type="text" class="form-control d-inline w-auto"></li>
+          <li>Services will commence <span contenteditable="true">…………………………………</span></li>
+          <li>Services to be completed: <span contenteditable="true">…………………………………</span></li>
+          <li>Validity period of this quotation is <span contenteditable="true">………</span> days from the Return by Date.</li>
+          <li>We enclose the following documents:
+            <ol type="i">
+              <li>A copy of a valid business licence.</li>
+              <li>A copy of a valid business registration certificate.</li>
+              <li>A copy of a valid NRA Tax Clearance Certificate (for last three Financial Years).</li>
+              <li>A copy of a valid NASSIT Tax Clearance Certificate.</li>
+              <li>A copy of a valid Municipal Tax Clearance Certificate.</li>
+              <li>A list of recent contracts performed.</li>
+              <li>A copy of a technical proposal.</li>
+              <li>[Insert any other documentation required by the Entity]</li>
+            </ol>
+          </li>
+          <li>We confirm that our quotation is subject to the General Conditions of Contract for Local Purchase Orders and is based on the terms and conditions stated in your Request for Quotation referenced above.</li>
+          <li>We confirm that the prices quoted are fixed and firm for the duration of the validity period and will not be subject to revision or variation.</li>
+        </ol>
+
+        <h4>Authorised By:</h4>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="d-flex align-items-center">
+              <p class="mb-0 me-2">Signature:</p>
+              <input type="file" id="signature2Input" accept="image/*" style="display: none;" onchange="showSignature2(this)">
+              <div id="signature2Preview" class="form-control w-75 text-center" style="cursor: pointer;" onclick="document.getElementById('signature2Input').click();">Click to upload signature</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Name:<span contenteditable="true">…………………………………</span></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p>Position:<span contenteditable="true">…………………………………</span></p>
+          </div>
+          <div class="col-md-6">
+            <p class="d-flex align-items-center">
+              <span>Date:</span>
+              <input type="date" name="authorized_date" class="form-control d-inline-block ms-2 w-auto">
+            </p>
+          </div>
+        </div>
+
+        <p>Authorised for and on behalf of:</p>
+        <div class="mb-3">
+          <p>Company:<span contenteditable="true">…………………………………</span></p>
+        </div>
+        <div class="mb-3">
+          <p>Registered Address:<span contenteditable="true">…………………………………</span></p>
+        </div>
+
+        <p style="font-weight: bold;">If any additional documentation is attached, a signature and authorisation at Sections B, C, and D are still required as confirmation that the terms and conditions of this RFQ are accepted. If the Quotation is not authorised in Sections B, C, and D, the quotation may be rejected.</p>
+      </div>
+    </div>
+
+    <!-- Section Three -->
+    <div id="SectionThree" class="section">
+      <h3>National Medical Supplies Agency</h3>
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+        </tr>
+      </table>
+      <!-- Procurement Details Table -->
+      <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid black;">Procuring Entity</th>
+            <th style="border: 1px solid black;">Department/PROJECT</th>
+            <th style="border: 1px solid black;">Sequence Number</th>
+            <th style="border: 1px solid black;">Bid/RFQ/RFP No</th>
+            <th style="border: 1px solid black;">Contract/PO No</th>
+            <th style="border: 1px solid black;">FY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid black;"><input type="text" name="procuring_entity" class="form-control" value="NMSA"></td>
+            <td style="border: 1px solid black;"><input type="text" name="department" class="form-control" value="Operations"></td>
+            <td style="border: 1px solid black;"><input type="text" name="sequence_number" class="form-control" value="0031"></td>
+            <td style="border: 1px solid black;"><input type="text" name="bid_number" class="form-control" value="0031"></td>
+            <td style="border: 1px solid black;"><input type="text" name="contract_number" class="form-control" value="033"></td>
+            <td style="border: 1px solid black;"><input type="text" name="fy" class="form-control" value="2024"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+
+      <!-- Service Table -->
+      <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid black;">Item No</th>
+            <th style="border: 1px solid black;">Description of Service<br> MAINTENANCE OF FORKLIFTS</th>
+            <th style="border: 1px solid black;">Unit of Measure</th>
+            <th style="border: 1px solid black;">Quantity</th>
+            <th style="border: 1px solid black;">Delivered Unit Price Leones</th>
+            <th style="border: 1px solid black;">Delivered Total Price Leones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid black;"><input type="text" name="item_no_1" class="form-control" value="1"></td>
+            <td style="border: 1px solid black;"><input type="text" name="description_1" class="form-control" value="JUNGHEINRICH Forklift (STORE A)"></td>
+            <td style="border: 1px solid black;"><input type="text" name="unit_of_measure_1" class="form-control" value="1"></td>
+            <td style="border: 1px solid black;"><input type="text" name="quantity_1" class="form-control" value="1"></td>
+            <td style="border: 1px solid black;"><input type="text" name="delivered_unit_price_1" class="form-control"></td>
+            <td style="border: 1px solid black;"><input type="text" name="delivered_total_price_1" class="form-control"></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid black;"><input type="text" name="item_no_2" class="form-control" value="2"></td>
+            <td style="border: 1px solid black;"><input type="text" name="description_2" class="form-control" value="JUNGHEINRICH Forklift (STORE B)"></td>
+            <td style="border: 1px solid black;"><input type="text" name="unit_of_measure_2" class="form-control" value="1"></td>
+            <td style="border: 1px solid black;"><input type="text" name="quantity_2" class="form-control" value="1"></td>
+            <td style="border: 1px solid black;"><input type="text" name="delivered_unit_price_2" class="form-control"></td>
+            <td style="border: 1px solid black;"><input type="text" name="delivered_total_price_2" class="form-control"></td>
+          </tr>
+          <tr>
+            <td colspan="2" style="border: 1px solid black;"><input type="text" name="diagnostic_fees" class="form-control" value="Diagnostic Fees"></td>
+            <td style="border: 1px solid black;"><input type="text"></td>
+            <td style="border: 1px solid black;"><input type="text"></td>
+            <td style="border: 1px solid black;"><input type="text"></td>
+            <td style="border: 1px solid black;"><input type="text"></td>
+          </tr>
+          <tr>
+            <td colspan="2" style="border: 1px solid black;"><input type="text" name="labour_cost" class="form-control" value="Labour Cost"></td>
+            <td style="border: 1px solid black;"><input type="text"></td>
+            <td style="border: 1px solid black;"><input type="text"></td>
+            <td style="border: 1px solid black;"><input type="text"></td>
+            <td style="border: 1px solid black;"><input type="text"></td>
+          </tr>
+          <tr>
+            <td colspan="5" style="text-align: right; border: 1px solid black;">Total</td>
+            <td style="border: 1px solid black;"><input type="text" name="total_price" class="form-control"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+
+      <!-- Authorized By Section -->
+      <h4>Authorized By:</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Signature:<span contenteditable="true">…………………………………</span></p>
+        </div>
+        <div class="col-md-6 text-end">
+          <p>Name: <span contenteditable="true">…………………………………</span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Position: <span contenteditable="true">…………………………………</span></p>
+        </div>
+        <div class="col-md-6 text-end">
+          <p>Date: <input type="date"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p>Authorized for and on behalf of:</p>
+          <p>Company:<span contenteditable="true">…………………………………</span></p>
+        </div>
+      </div>
+
+      <!-- Section D -->
+      <h4>SECTION D: TECHNICAL DATA</h4>
+      <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid black;">Item No</th>
+            <th style="border: 1px solid black;">Technical Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid black;"><input type="text" name="item_no_technical" class="form-control" value="1"></td>
+            <td style="border: 1px solid black;"><input type="text" name="technical_data" class="form-control" value="ENGINE OIL DELO"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section Four -->
+    <div id="SectionFour" class="section">
+      <h3>National Medical Supplies Agency</h3>
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+        </tr>
+      </table>
+      <!-- Procurement Details Table -->
+      <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid black;">Procuring Entity</th>
+            <th style="border: 1px solid black;">Department/PROJECT</th>
+            <th style="border: 1px solid black;">Sequence Number</th>
+            <th style="border: 1px solid black;">Bid/RFQ/RFP No</th>
+            <th style="border: 1px solid black;">Contract/PO No</th>
+            <th style="border: 1px solid black;">FY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid black;"><input type="text" name="procuring_entity" class="form-control" value="NMSA"></td>
+            <td style="border: 1px solid black;"><input type="text" name="department" class="form-control" value="Operations"></td>
+            <td style="border: 1px solid black;"><input type="text" name="sequence_number" class="form-control" value="0031"></td>
+            <td style="border: 1px solid black;"><input type="text" name="bid_number" class="form-control" value="0031"></td>
+            <td style="border: 1px solid black;"><input type="text" name="contract_number" class="form-control" value="033"></td>
+            <td style="border: 1px solid black;"><input type="text" name="fy" class="form-control" value="2024"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+
+      <!-- Technical Data Table -->
+      <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid black;">Item No</th>
+            <th style="border: 1px solid black;">Technical Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Store A Forklift Data -->
+          <tr>
+            <td style="border: 1px solid black;">1</td>
+            <td style="border: 1px solid black;"><input type="text" name="engine_oil" class="form-control" value="ENGINE OIL DELO"></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid black;">2</td>
+            <td style="border: 1px solid black;"><input type="text" name="oil_filter" class="form-control" value="OIL FILTER"></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid black;">3</td>
+            <td style="border: 1px solid black;"><input type="text" name="fuel_filter" class="form-control" value="FUEL FILTER"></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid black;">4</td>
+            <td style="border: 1px solid black;"><input type="text" name="air_filter" class="form-control" value="AIR FILTER"></td>
+          </tr>
+          <!-- Additional items as needed -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section Five -->
+    <div id="SectionFive" class="section">
+      <h3>National Medical Supplies Agency</h3>
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+        </tr>
+      </table>
+      <!-- Procurement Details Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered" style="width: 100%; border: 1px solid black;">
+          <thead>
+            <tr>
+              <th>Procuring Entity</th>
+              <th>Department/PROJECT</th>
+              <th>Sequence Number</th>
+              <th>Bid/RFQ/RFP No</th>
+              <th>Contract/PO No</th>
+              <th>FY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="procuring_entity" value="NMSA" class="form-control"></td>
+              <td><input type="text" name="department" value="Operations" class="form-control"></td>
+              <td><input type="text" name="sequence_number" value="0031" class="form-control"></td>
+              <td><input type="text" name="bid_number" value="0031" class="form-control"></td>
+              <td><input type="text" name="contract_number" value="033" class="form-control"></td>
+              <td><input type="text" name="fy" value="2024" class="form-control"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Boxed Note -->
+      <div class="text-center my-4" style="border: 1px solid black; padding: 10px;">
+        <p><strong>KINDLY NOTE THAT THIS SECTION IS ALSO SUPPORTED BY THE FINDINGS OF EACH VENDOR AFTER DIAGNOSING BOTH FORKLIFTS.</strong></p>
+      </div>
+
+      <!-- Confirmation Text -->
+      <p class="fw-bold">We confirm that we comply with the technical requirements as detailed above.</p>
+
+      <!-- Authorisation Section -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Signature Section -->
+        <div>
+          <strong>SIGNATURE</strong>:
+          <input type="file" id="signature8Input" accept="image/*" style="display: none;" onchange="showSignature8(this)">
+          <div id="signature8Preview" class="form-control text-center d-inline-block" style="cursor: pointer; width: 200px;" onclick="document.getElementById('signature8Input').click();">
+            Click to upload signature
+          </div>
+        </div>
+
+        <!-- Name Section -->
+        <div class="d-flex align-items-center">
+          <p class="mb-0"><strong>Name</strong>: <span contenteditable="true">_________________________</span></p>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <p>Position: <span contenteditable="true">_________________________</span></p>
+        </div>
+        <div class="col-md-6 text-end">
+          <p>Date: <span contenteditable="true">(DD/MM/YY)</span></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Authorised for and on behalf of:</p>
+        </div>
+      </div>
+
+      <p>Vendor: <span contenteditable="true">_________________________</span></p>
+
+      <!-- Integrity Pact Section -->
+      <h4 class="text-center bg-warning text-dark p-2" style="font-weight: bold;">Integrity Pact</h4>
+
+      <!-- Integrity Pact Text -->
+      <p>This Integrity Pact is entered into on the <span contenteditable="true">.............</span> day of <span contenteditable="true">.............</span> in the Year of Our Lord Two Thousand and <span contenteditable="true">.............</span> Between National Medical Supplies Agency hereinafter referred to as “Purchaser”.</p>
+    </div>
+
+    <!-- Section Six -->
+    <div id="SectionSix" class="section">
+      <h3>National Medical Supplies Agency</h3>
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+        </tr>
+      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered" style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="width: 20%;">Procuring Entity</th>
+              <th style="width: 20%;">Department/PROJECT</th>
+              <th style="width: 15%;">Sequence Number</th>
+              <th style="width: 15%;">Bid/RFQ/RFP No</th>
+              <th style="width: 15%;">Contract/PO No</th>
+              <th style="width: 10%;">FY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="procuring_entity" value="NMSA" class="form-control"></td>
+              <td><input type="text" name="department" value="Operations" class="form-control"></td>
+              <td><input type="text" name="sequence_number" value="0031" class="form-control"></td>
+              <td><input type="text" name="bid_number" value="0031" class="form-control"></td>
+              <td><input type="text" name="contract_number" value="033" class="form-control"></td>
+              <td><input type="text" name="fy" value="2024" class="form-control" style="width: 80px;"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Preamble Section -->
+      <p class="fw-bold mt-4">And <span contenteditable="true">____________________</span> hereinafter referred to as “(Supplier)”</p>
+
+      <h5 class="fw-bold">Preamble</h5>
+      <p>
+        Whereas “the Parties” are cognizant of the scourge of corruption and its negative effects on the development of a country and are aware also of the immense benefits which doing business in a corruption free environment holds for their individual businesses as well as for the country as a whole.
+      </p>
+      <p>
+        <strong>AND Whereas</strong> corruption and corrupt practices in the form of procurement violations particularly conflict of interest have been identified as an area for immediate and targeted attention in the relationship between the public service and the private sector.
+      </p>
+      <p>
+        <strong>AND Whereas</strong> the parties now wish to further commit themselves to actions which will promote a corruption free business environment including full compliance with all relevant laws, rules and regulations which may currently be in force relating to anti-corruption and good business practices in line with the Anti-Corruption Act, 2008 and other government initiatives relating to the private sector in Sierra Leone.
+      </p>
+
+      <h5 class="fw-bold">The Parties hereby commit themselves and pledge as follows:</h5>
+      <ol>
+        <li>To maintain a strict and unwavering adherence to good business practices in the execution of all their undertakings.</li>
+        <li>To take all measures necessary to prevent corruption in their mutual and other dealings.</li>
+        <li>To observe and implement recommendations, instructions, or directives from the Anti-Corruption Commission made pursuant to the Anti-Corruption Act 2008.</li>
+        <li>To uphold, implement, and maintain a No bribery policy in the conduct of their transactions.</li>
+      </ol>
+
+      <h5 class="fw-bold">Reporting violations</h5>
+      <ol start="5">
+        <li>To promptly inform the Anti-Corruption Commission of any employee, agent, representative, or an associate, whether its own or of the other Party, whose conduct may constitute corruption, or is likely to engender corruption or corrupt practices.</li>
+      </ol>
+
+      <h5 class="fw-bold">Conflict of Interest</h5>
+      <ol start="6">
+        <li>To actively guard against Conflict of Interest including situations when an employee or staff’s interest may interfere with the interests of the enterprise/organization to which he/she is employed.</li>
+        <li>To insist that employees or staff shall disclose to the enterprise/organization any situation that reasonably would be expected to give rise to a conflict of interest or the appearance of the same.</li>
+        <li>To ensure that employees or staff obtain approval prior to accepting any position on a board of directors, an advisory board, or a committee of any entity.</li>
+      </ol>
+      <ol start="9">
+        <li>That no employee/staff may obtain any personal material benefit or favor because of his or her position with the enterprise/organization.</li>
+        <li>That no employee/staff may have financial interest (indirect ownership, direct ownership or otherwise) in a company whose business/operations relate to his/her post, functions held or otherwise supervised in his/her current employment.</li>
+      </ol>
+    </div>
+
+    <!-- Section Seven -->
+    <div id="SectionSeven" class="section">
+      <h3>National Medical Supplies Agency</h3>
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+        </tr>
+      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered" style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th>Procuring Entity</th>
+              <th>Department/PROJECT</th>
+              <th>Sequence Number</th>
+              <th>Bid/RFQ/RFP No</th>
+              <th>Contract/PO No</th>
+              <th>FY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="procuring_entity" value="NMSA" class="form-control"></td>
+              <td><input type="text" name="department" value="Operations" class="form-control"></td>
+              <td><input type="text" name="sequence_number" value="0031" class="form-control"></td>
+              <td><input type="text" name="bid_number" value="0031" class="form-control"></td>
+              <td><input type="text" name="contract_number" value="033" class="form-control"></td>
+              <td><input type="text" name="fy" value="2024" class="form-control"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>11. To closely monitor and regulate actual or potential conflict of interests...</p>
+
+      <p><strong>THE PARTIES HEREBY</strong> demonstrate their pledge and commitment...</p>
+
+      <!-- Procuring Entity Signature -->
+      <div class="row justify-content-between">
+        <div class="col-md-6">
+          <label>SIGNATURE:</label>
+          <input type="file" id="signature5Input" accept="image/*" style="display: none;" onchange="showSignature5(this)">
+          <!-- Placeholder for the image preview or text input -->
+          <div id="signature5Preview" class="form-control w-75 text-center" style="cursor: pointer;" onclick="document.getElementById('signature5Input').click();">
+            Click to upload signature
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>Date:
+            <input type="date"></p>
+        </div>
+      </div>
+
+      <p class="text-center">(PROCURING ENTITY)</p>
+
+      <!-- In the presence of Procuring Entity -->
+      <div>
+        <div>
+          <label>Name:</label>
+          <span contenteditable="true">…………………………………</span>
+        </div>
+        <div>
+          <label>Address:</label>
+          <span contenteditable="true">…………………………………</span>
+        </div>
+        <div>
+          <label>Designation:</label>
+          <span contenteditable="true">…………………………………</span>
+        </div>
+      </div>
+
+      <!-- Bidder Signature -->
+      <div class="row justify-content-between">
+        <div class="col-md-6 d-flex align-items-center">
+          <label class="me-2">SIGNATURE:</label>
+          <input type="file" id="signature4Input" accept="image/*" style="display: none;" onchange="showSignature4(this)">
+          <div id="signature4Preview" class="form-control text-center" style="cursor: pointer; width: 200px;" onclick="document.getElementById('signature4Input').click();">
+            Click to upload signature
+          </div>
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+          <label class="me-2 mb-0">Date:</label>
+          <input type="date" class="form-control" style="width: 200px;">
+        </div>
+      </div>
+
+      <div class="row justify-content-between mt-3">
+        <div class="col-md-6 d-flex align-items-center">
+          <label class="me-2">SIGNATURE:</label>
+          <input type="file" id="signature6Input" accept="image/*" style="display: none;" onchange="showSignature6(this)">
+          <div id="signature6Preview" class="form-control text-center" style="cursor: pointer; width: 200px;" onclick="document.getElementById('signature6Input').click();">
+            Click to upload signature
+          </div>
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+          <label class="me-2 mb-0">Date:</label>
+          <input type="date" class="form-control" style="width: 200px;">
+        </div>
+      </div>
+
+      <p class="text-center">(BIDDER)</p>
+
+      <!-- In the presence of Bidder -->
+      <div>
+        <div>
+          <label>Name:</label>
+          <span contenteditable="true">…………………………………</span>
+        </div>
+        <div>
+          <label>Address:</label>
+          <span contenteditable="true">…………………………………</span>
+        </div>
+        <div>
+          <label>Designation:</label>
+          <span contenteditable="true">…………………………………</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Eight -->
+    <div id="SectionEight" class="section">
+      <div>
+        <h3 class="fw-bold">National Medical Supplies Agency</h3>
+      </div>
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+        </tr>
+      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered text-center" style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th>Procuring Entity</th>
+              <th>Department/PROJECT</th>
+              <th>Sequence Number</th>
+              <th>Bid/RFQ/RFP No</th>
+              <th>Contract/PO No</th>
+              <th style="width: 100px;">FY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="procuring_entity" value="NMSA" class="form-control text-center" style="width: 100%;"></td>
+              <td><input type="text" name="department" value="Operations" class="form-control text-center" style="width: 100%;"></td>
+              <td><input type="text" name="sequence_number" value="0031" class="form-control text-center" style="width: 100%;"></td>
+              <td><input type="text" name="bid_number" value="0031" class="form-control text-center" style="width: 100%;"></td>
+              <td><input type="text" name="contract_number" value="033" class="form-control text-center" style="width: 100%;"></td>
+              <td><input type="text" name="fy" value="2024" class="form-control text-center" style="max-width: 100px;"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row justify-content-end align-items-center">
+        <div class="col-auto text-end">
+          <div class="d-flex align-items-center">
+            <p class="mb-0 me-2">Signature:</p>
+            <input type="file" id="signature7Input" accept="image/*" style="display: none;" onchange="showSignature7(this)">
+            <!-- Placeholder for the image preview or text input -->
+            <div id="signature7Preview" class="form-control w-100 text-center" style="cursor: pointer;" onclick="document.getElementById('signature7Input').click();">
+              Click to upload signature
+            </div>
+          </div>
+        </div>
+        <div class="col-auto text-end">
+          <p class="mb-0">Date: <input type="date"></p>
+        </div>
+
+        <div class="text-center mt-5">
+          <button class="btn btn-secondary" onclick="printPage()">Print Page</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="container navigation">
+      <button class="btn btn-secondary" onclick="previousSection()">Previous</button>
+      <button id="nextBtn" class="btn btn-primary" onclick="nextSection()">Next</button>
+      <button id="submitBtn" class="btn btn-success" style="display: none;" type="submit">Submit</button>
+    </div>
+    
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="copyright"></div>
+    <div class="credits"></div>
+  </footer><!-- End Footer -->
+
+  <!-- Back to top -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/panel/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/panel/vendor/chart.js/chart.umd.js"></script>
+  <script src="/panel/vendor/echarts/echarts.min.js"></script>
+  <script src="/panel/vendor/quill/quill.min.js"></script>
+  <script src="/panel/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/panel/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/panel/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/panel/js/main.js"></script>
+
+  <!-- Additional JavaScript -->
+  <script>
+    // Function to print the entire page
+    function printPage() {
+      const sections = document.querySelectorAll('.section');
+
+      // Temporarily make all sections visible
+      sections.forEach(section => {
+        section.classList.add('active');
+      });
+
+      // Print the page
+      window.print();
+
+      // Revert sections back to the original state (hide non-active sections)
+      sections.forEach((section, index) => {
+        if (index !== currentSectionIndex) {
+          section.classList.remove('active');
+        }
+      });
+    }
+
+    // Functions to handle image upload and preview
+    function showSignature(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('signaturePreview').innerHTML = '<img src="' + e.target.result + '" alt="Signature" style="width: 100px; height: auto; display: block;">';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function showSignature2(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('signature2Preview').innerHTML = '<img src="' + e.target.result + '" alt="Signature" style="width: 100px; height: auto; display: block;">';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function showSignature3(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('signature3Preview').innerHTML = '<img src="' + e.target.result + '" alt="Signature" style="width: 100px; height: auto; display: block;">';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function showSignature4(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('signature4Preview').innerHTML = '<img src="' + e.target.result + '" alt="Signature" style="width: 100px; height: auto; display: block;">';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function showSignature5(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('signature5Preview').innerHTML = '<img src="' + e.target.result + '" alt="Signature" style="width: 100px; height: auto; display: block;">';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function showSignature6(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('signature6Preview').innerHTML = '<img src="' + e.target.result + '" alt="Signature" style="width: 100px; height: auto; display: block;">';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function showSignature7(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('signature7Preview').innerHTML = '<img src="' + e.target.result + '" alt="Signature" style="width: 100px; height: auto; display: block;">';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function showSignature8(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('signature8Preview').innerHTML = '<img src="' + e.target.result + '" alt="Signature" style="width: 100px; height: auto; display: block;">';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // Function to handle section navigation
+    let currentSectionIndex = 0;
+    const sections = document.querySelectorAll('.section');
+
+    function showSection(index) {
+      sections.forEach((section, i) => {
+        section.classList.remove('active');
+        if (i === index) {
+          section.classList.add('active');
+        }
+      });
+
+      // Check if it's the last section
+      if (index === sections.length - 1) {
+        // Replace "Next" with "Submit"
+        document.getElementById('nextBtn').style.display = 'none';
+        document.getElementById('submitBtn').style.display = 'inline-block';
+      } else {
+        // Show "Next" button if not the last section
+        document.getElementById('nextBtn').style.display = 'inline-block';
+        document.getElementById('submitBtn').style.display = 'none';
+      }
+    }
+
+    function nextSection() {
+      if (currentSectionIndex < sections.length - 1) {
+        currentSectionIndex++;
+        showSection(currentSectionIndex);
+      }
+    }
+
+    function previousSection() {
+      if (currentSectionIndex > 0) {
+        currentSectionIndex--;
+        showSection(currentSectionIndex);
+      }
+    }
+
+    // Initialize first section as active
+    showSection(currentSectionIndex);
+  </script>
+
+</body>
+
+</html>

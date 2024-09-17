@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    .header {
+        text-align: left;
+        font-weight: bold;
+    }
+    .form-title {
+        text-align: center;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        text-align: center;
+    }
+    .editable {
+        border: none;
+        width: 100%;
+        text-align: left;
+    }
+    .editable:focus {
+        outline: none;
+        border-bottom: 1px solid #000;
+    }
+    .add-row-button {
+        display: block;
+        margin: 20px 0;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+    }
+    .add-row-button:hover {
+        background-color: #45a049;
+    }
+</style>
+  <!-- Favicons -->
+  <link href="/panel/img/favicon.png" rel="icon">
+  <link href="/panel/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/panel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/panel/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/panel/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/panel/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/panel/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/panel/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.5.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <img src="/panel/logo/headerlogo.jpg" class="d-flex align-items-center" style="height: fit-content;">
+            
+          </a>
+          <i class="bi bi-list toggle-sidebar-btn"></i>
+          
+        </div><!-- End Logo -->
+    
+    
+    
+      </header>
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item collapsed">
+            <a class="nav-link collapsed" href="/procurments/dashboard">
+              <i class="bi bi-grid"></i>
+              <span>RFQ</span>
+            </a>
+          </li><!-- End Dashboard Nav -->
+    
+          <li class="nav-item">
+            <a class="nav-link" href="/procurments/dashboard/spd1">
+              <i class="bi bi-grid"></i>
+              <span>SPF 1</span>
+            </a>
+          </li><!-- End Dashboard Nav -->
+          <li class="nav-item collapsed">
+            <a class="nav-link collapsed" href="/procurments/dashboard/memo">
+              <i class="bi bi-grid"></i>
+              <span>Memo</span>
+            </a>
+          </li><!-- End Dashboard Nav -->
+
+           <!-- Logout Button -->
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/login">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Logout Nav -->
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+    
+    <hr>
+    <div class="pagetitle">
+      
+      </div><!-- End Page Title -->
+    
+      <hr>
+      <div class="container">
+        <div class="form-title row">
+            <div class="col-6">
+                <strong>PROCUREMENT REQUISITION</strong>
+            </div>
+            <div class="col-6 text-left">
+                <strong>Page __1_ of ___</strong>
+            </div>
+        </div>
+        <hr>
+    <!-- Procurement Number Section -->
+    <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+            <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+        </tr>
+    </table>
+    
+  
+    <!-- Main Table -->
+    <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid #000; padding: 8px;">Procuring Entity</th>
+            <th style="border: 1px solid #000; padding: 8px;">Department/Project</th>
+            <th style="border: 1px solid #000; padding: 8px;">Financial Year</th>
+            <th style="border: 1px solid #000; padding: 8px;">Sequence Number</th>
+            <th style="border: 1px solid #000; padding: 8px;">Bid Number</th>
+            <th style="border: 1px solid #000; padding: 8px;">Contract/PO Number</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="NMSA"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="Operations"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="number" class="editable" value="2024"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="0031"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="0031"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="033"></td>
+        </tr>
+    </table>
+    
+    
+    <!-- Subject of Procurement Table -->
+    <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid #000; padding: 8px;">Subject of Procurement</th>
+            <td style="border: 1px solid #000; padding: 8px;">
+                <input type="text" class="editable" placeholder="Enter subject of procurement">
+            </td>
+        </tr>
+    </table>
+    
+    
+    <!-- Button to Add New Row -->
+    <button class="add-row-button" onclick="addRow()">Add New Item</button>
+    <hr>
+    <!-- Item Table -->
+    <h2>Item Table</h2>
+    <table id="itemTable">
+        <thead>
+            <tr>
+                <th>Item No</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Estimated Unit Cost SLE</th>
+                <th>Estimated Total Cost SLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="editable" placeholder="Enter item number"></td>
+                <td><input type="text" class="editable" placeholder="Enter description"></td>
+                <td><input type="number" class="editable" placeholder="Enter quantity" oninput="updateTotals()"></td>
+                <td><input type="number" class="editable" placeholder="Enter unit cost" oninput="updateTotals()"></td>
+                <td><input type="number" class="editable" placeholder="Enter total cost" readonly></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class="total-row">
+                <td colspan="4">Total Estimated Total Cost SLE:</td>
+                <td id="totalCost">0</td>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- <button onclick="addRow()">Add New Row</button> -->
+    <hr>
+    <h4>Vote Code</h4>
+    <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid #000; padding: 8px;">3</th>
+            <th style="border: 1px solid #000; padding: 8px;">0</th>
+            <th style="border: 1px solid #000; padding: 8px;">7</th>
+    
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value=""></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value=""></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="number" class="editable" value=""></td>
+    
+        </tr>
+    </table>
+</div>
+
+<script>
+    function updateTotals() {
+        let table = document.getElementById('itemTable');
+        let totalCost = 0;
+
+        for (let i = 1; i < table.rows.length - 1; i++) {
+            let row = table.rows[i];
+            let quantity = parseFloat(row.cells[2].querySelector('input').value) || 0;
+            let unitCost = parseFloat(row.cells[3].querySelector('input').value) || 0;
+            let total = quantity * unitCost;
+
+            row.cells[4].querySelector('input').value = total.toFixed(2);
+            totalCost += total;
+        }
+
+        document.getElementById('totalCost').innerText = totalCost.toFixed(2);
+    }
+
+    function addRow() {
+        let table = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+        let newRow = table.insertRow();
+
+        newRow.innerHTML = `
+            <td><input type="text" class="editable" placeholder="Enter item number"></td>
+            <td><input type="text" class="editable" placeholder="Enter description"></td>
+            <td><input type="number" class="editable" placeholder="Enter quantity" oninput="updateTotals()"></td>
+            <td><input type="number" class="editable" placeholder="Enter unit cost" oninput="updateTotals()"></td>
+            <td><input type="number" class="editable" placeholder="Enter total cost" readonly></td>
+        `;
+
+        // Recalculate the total whenever a new row is added
+        updateTotals();
+    }
+</script>
+
+
+    <hr>
+    Signatures required to certify that (1) the works, services or supplies described are required, (2) funds are available or budgeted for the requirement, and that (3) approval is 
+    granted to proceed with the procurement.
+    
+    <div class="container table-container">
+        
+        <table >
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Signature</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1. Originating Officer</td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="date"  class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                </tr>
+                <tr>
+                    <td>2. Availability of Funds</td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="date" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                </tr>
+                <tr>
+                    <td>3. Head of Department/Unit</td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="text" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                    <td class="signature-cell"><input type="date" class="form-control" placeholder="______________________________________" id="editablePlaceholder"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>   
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button">Submit</button>
+        
+      </div>
+   
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/panel/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/panel/vendor/chart.js/chart.umd.js"></script>
+  <script src="/panel/vendor/echarts/echarts.min.js"></script>
+  <script src="/panel/vendor/quill/quill.min.js"></script>
+  <script src="/panel/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/panel/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/panel/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/panel/js/main.js"></script>
+
+</body>
+
+</html>

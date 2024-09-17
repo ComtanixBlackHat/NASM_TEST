@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Memo - NMSA</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+
+    .header {
+      font-weight: bold;
+      text-align: left;
+      line-height: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header img {
+      height: 100px;
+    }
+
+    .form-title {
+      text-align: center;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .memo-content {
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #000;
+    }
+
+    .editable {
+      border: none;
+      display: inline-block;
+      text-decoration: underline;
+      min-height: 1.5em;
+      background: linear-gradient(transparent 90%, black 90%);
+      background-repeat: repeat-x;
+      background-size: 100% 1px;
+    }
+
+    .editable:focus {
+      outline: none;
+    }
+
+    .sign-section {
+      margin-top: 50px;
+    }
+
+    .signature {
+      margin-top: 40px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .print-btn {
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover,
+    .print-btn:hover {
+      background-color: green;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      .memo-content,
+      .memo-content * {
+        visibility: visible;
+      }
+
+      .memo-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+
+      .submit-btn,
+      .print-btn {
+        display: none;
+      }
+
+      .editable {
+        border: none;
+        display: inline-block;
+        text-decoration: none;
+        min-height: 1.5em;
+        background: linear-gradient(transparent 90%, black 90%);
+        background-repeat: repeat-x;
+        background-size: 100% 1px;
+      }
+    }
+  </style>
+  <!-- Favicons -->
+  <link href="/panel/img/favicon.png" rel="icon">
+  <link href="/panel/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/panel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/panel/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/panel/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/panel/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/panel/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/panel/css/style.css" rel="stylesheet">
+  <style>
+    #main {
+      background-color: #f8f9fa;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label {
+      font-weight: 600;
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 4px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="/panel/logo/headerlogo.jpg" class="d-flex align-items-center" style="height: fit-content;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+  </header>
+
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/finance/dashboard/memo">
+          <i class="bi bi-grid"></i>
+          <span>Memo</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/finance/dashboard">
+          <i class="bi bi-grid"></i>
+          <span>SPF 1</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item "></li>
+        <a class="nav-link " href="#">
+          <i class="bi bi-grid"></i>
+          <span>Register</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <!-- Logout Button -->
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/finance/login">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Logout Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+   
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Register User</h1>
+
+      <!-- Register User Form -->
+      <form id="registerForm" onsubmit="handleFormSubmit(event)">
+        <div class="row mb-3">
+          <!-- Name -->
+          <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+          </div>
+
+          <!-- Designation -->
+          <div class="col-md-6">
+            <label for="designation" class="form-label">Designation</label>
+            <input type="text" class="form-control" id="designation" placeholder="Enter your designation" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <!-- Password -->
+          <div class="col-md-6">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <!-- Signature Upload -->
+          <div class="col-md-6">
+            <label for="signature" class="form-label">Signature</label>
+            <input type="file" class="form-control" id="signature" accept="image/*" required>
+          </div>
+
+          <!-- Profile Picture Upload -->
+          <div class="col-md-6">
+            <label for="profilePic" class="form-label">Profile Picture</label>
+            <input type="file" class="form-control" id="profilePic" accept="image/*" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <!-- Role Selection -->
+          <div class="col-md-12">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-select" id="role" required>
+              <option selected disabled value="">Choose role</option>
+              <option value="Managing Director">Managing Director</option>
+              <option value="Deputy Managing Director">Deputy Managing Director</option>
+              <option value="Director of Finance &amp; Admin">Director of Finance &amp; Admin</option>
+              <option value="Director of Procurement">Director of Procurement</option>
+              <option value="Director of Quality Assurance">Director of Quality Assurance</option>
+              <option value="Director of Operations">Director of Operations</option>
+              <option value="Director of Human Resources">Director of Human Resources</option>
+              <option value="ICT Manager">ICT Manager</option>
+              <option value="MIS Supervisor/Manager">MIS Supervisor/Manager</option>
+              <option value="National Logistics Manager">National Logistics Manager</option>
+              <option value="National Warehouse Manager">National Warehouse Manager</option>
+              <option value="Internal Audit Manager">Internal Audit Manager</option>
+              <option value="Data Information Officer">Data Information Officer</option>
+              <option value="Human Resource Officer">Human Resource Officer</option>
+              <option value="Procurement Officer">Procurement Officer</option>
+              <option value="Accountant">Accountant</option>
+              <option value="Admin Officer">Admin Officer</option>
+              <option value="MIS Officer">MIS Officer</option>
+              <option value="Finance Officer">Finance Officer</option>
+              <option value="Finance Assistant Officer">Finance Assistant Officer</option>
+              <option value="Public Relations Officer">Public Relations Officer</option>
+              <option value="Receiving Bay Officer">Receiving Bay Officer</option>
+              <option value="Central Logistics Officer">Central Logistics Officer</option>
+              <option value="Store Assistant">Store Assistant</option>
+              <option value="ICT Officer">ICT Officer</option>
+              <option value="Driver">Driver</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </div>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/panel/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/panel/vendor/chart.js/chart.umd.js"></script>
+  <script src="/panel/vendor/echarts/echarts.min.js"></script>
+  <script src="/panel/vendor/quill/quill.min.js"></script>
+  <script src="/panel/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/panel/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/panel/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/panel/js/main.js"></script>
+
+  <script>
+    function submitMemo() {
+      // Get all elements with class 'editable'
+      const editables = document.querySelectorAll('.editable');
+
+      // Log each editable element's content
+      editables.forEach((editable, index) => {
+        console.log(`Editable ${index + 1}:`, editable.textContent.trim());
+      });
+    }
+
+    function printMemo() {
+      window.print();
+    }
+  </script>
+  <script>
+    // Function to handle form submission
+    function handleFormSubmit(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Alert the user
+      alert("User Registered");
+
+      // Reload the page
+      window.location.reload();
+    }
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <style>
+    .table-container {
+      margin-top: 20px;
+    }
+    .signature {
+      padding: 20px 0;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+  </style>
+  <!-- Favicons -->
+  <link href="/panel/img/favicon.png" rel="icon">
+  <link href="/panel/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/panel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/panel/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/panel/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/panel/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/panel/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/panel/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="/panel/logo/headerlogo.jpg" class="d-flex align-items-center" style="height: fit-content;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+  </header>
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item collapsed">
+            <a class="nav-link collapsed" href="/procurments/dashboard/memo">
+                <i class="bi bi-grid"></i>
+                <span>Memo</span>
+            </a>
+        </li><!-- End Memo Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/procurments/dashboard/spd1">
+                <i class="bi bi-grid"></i>
+                <span>SPF 1</span>
+            </a>
+        </li><!-- End SPF1 Nav -->
+
+        <li class="nav-item collapsed">
+            <a class="nav-link collapsed" href="/procurments/dashboard/eva">
+                <i class="bi bi-grid"></i>
+                <span>EVA</span>
+            </a>
+        </li><!-- End EVA Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#rfqSubmenu" role="button" aria-expanded="false" aria-controls="rfqSubmenu">
+                <i class="bi bi-grid"></i>
+                <span>RFQ</span>
+            </a>
+            <ul id="rfqSubmenu" class="collapse" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a class="nav-link" href="/procurments/dashboard">
+                        <span class="sub-span">Request for Good</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/procurments/dashboard/work">
+                        <span class="sub-span">Work</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/procurments/dashboard>
+                        <span class="sub-span">Services</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End RFQ Nav -->
+
+        <li class="nav-item collapsed">
+            <a class="nav-link collapsed" href="/procurments/dashboard/lpo">
+                <i class="bi bi-grid"></i>
+                <span>LPO</span>
+            </a>
+        </li><!-- End LPO Nav -->
+
+        <!-- Logout Button -->
+        <li class="nav-item collapsed">
+            <a class="nav-link collapsed" href="/procurments/login">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+            </a>
+        </li><!-- End Logout Nav -->
+    </ul>
+</aside><!-- End Sidebar-->
+
+
+  <main id="main" class="main">
+    <div style="text-align: center;">
+        
+        
+            <h3 style="font-weight: bold;">Republic of Sierra Leone</h3>
+            <br>
+            <h3 style="font-weight: bold;">Standard Bidding Documents</h3>
+            <br>
+            <hr>
+            <h4 style="font-weight: bold;">Request for Quotation (RFQ) for Works</h4>
+            <hr>
+            <br>
+            <h4 style="font-weight: bold;">National Medical Supplies Agency</h4>
+            <br>
+            <br>
+            <h4 style="font-weight: bold;">Warehouse Repairs of Leakages on (Store Four {4} and the Free Health Care Store in Freetown)</h4>
+      
+        <!-- Align the following paragraphs to the left -->
+        <p style="text-align: left;"><strong>PROCUREMENT NUMBER:</strong> <input type="text" name="procurement_number"></p>
+        <p style="text-align: left;">Date of Issue: <%= new Date().toLocaleDateString() %></p>
+      </div>
+
+    <hr>
+    <br>
+    <div style="display: flex; flex-direction: row; align-items: center;">
+        <label for="" style="margin-right: 10px;">
+          <h4 style="margin: 0;">Name of Procuring:</h4>
+        </label>
+        <input type="text" value="National Medical Supplies Agency" style="width: 300px;">
+      </div>
+    <div style="display: flex; flex-direction: row; align-items: center; padding-top: 3px;">
+        <label for="" style="margin-right: 10px;">
+          <b><h4 style="margin: 0;">Address of Procuring Entity</h4></b>
+        </label>
+        <input type="text" value="31 Murray Town Road, Freetown." style="width: 300px;">
+      </div>
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <th style="border: 1px solid black; padding: 8px; text-align: left;">Procuring Entity</th>
+          <th style="border: 1px solid black; padding: 8px; text-align: left;">Department</th>
+          <th style="border: 1px solid black; padding: 8px; text-align: left;">Sequence Number</th>
+          <th style="border: 1px solid black; padding: 8px; text-align: left;">Bid/RFQ/RFP No</th>
+          <th style="border: 1px solid black; padding: 8px; text-align: left;">Contract No</th>
+          <th style="border: 1px solid black; padding: 8px; text-align: left;">Year</th>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px;"><input type="text" name="procuring_entity" value="NMSA" style="width: 100%; box-sizing: border-box;"></td>
+          <td style="border: 1px solid black; padding: 8px;"><input type="text" name="department" value="OPERATIONS" style="width: 100%; box-sizing: border-box;"></td>
+          <td style="border: 1px solid black; padding: 8px;"><input type="text" name="sequence_number" value="030" style="width: 100%; box-sizing: border-box;"></td>
+          <td style="border: 1px solid black; padding: 8px;"><input type="text" name="rfq_number" value="030" style="width: 100%; box-sizing: border-box;"></td>
+          <td style="border: 1px solid black; padding: 8px;"><input type="text" name="contract_number" value="032" style="width: 100%; box-sizing: border-box;"></td>
+          <td style="border: 1px solid black; padding: 8px;"><input type="text" name="year" value="2024" style="width: 100%; box-sizing: border-box;"></td>
+        </tr>
+      </table>
+
+    <p>To: <input type="text"></p>
+    <p>Date: <%= new Date().toLocaleDateString() %></p>
+
+    <h4>SECTION A: QUOTATION REQUIREMENTS</h4>
+    <ul>
+        <li><strong>Description of Works and Location:</strong> Roof Repairs and Painting Hard Board at Store Four (4) Central Medical Stores New England and the Free Health Care Store in Freetown.</li>
+        <li>Works are to commence: <input type="date" name="commencement_date"></li>
+        <li>Works to be completed by: <input type="date" name="completion_date"></li>
+        <li>Quotations must be valid for 30 days from the Return by Date.</li>
+        <li>Quotations and supporting documents must be clearly marked with the Procurement Number and must include acceptance of the stated terms and conditions.</li>
+        <li>Quotations must be received in sealed envelopes no later than: <input type="datetime-local" name="submission_deadline" value="<%= new Date().toISOString().slice(0, 16) %>"></li>
+        <li>Quotations must be returned to:
+            <address>
+                The Procurement Officer<br>
+                National Medical Supplies Agency<br>
+                No.31 Murray Town Road, Freetown.
+            </address>
+        </li>
+        <li>Payments will be made in accordance with any resulting order within forty-five (45) days of receipt of an invoice supported by a certificate of satisfactory completion.</li>
+    </ul>
+
+    <h4>SECTION B: QUOTATION DETAILS</h4>
+    <form method="POST">
+        <ul>
+            <li>Currency of Quotation is Leones</li>
+            <li>Works will commence: <input type="date" name="work_commencement"></li>
+            <li>Works will be completed: <input type="date" name="work_completion"></li>
+            <li>Validity period of this quotation is 30 days from the Return by Date.</li>
+        </ul>
+        <p>We enclose the following documents:</p>
+        <ol>
+            <li>A copy of a valid business licence</li>
+            <li>A copy of a valid business registration certificate</li>
+            <li>A copy of a valid NRA Tax Clearance Certificate</li>
+            <li>NASSIT clearance</li>
+            <li>A copy of a Valid Municipal Tax Clearance Certificate</li>
+            <li>A list of recent contracts performed</li>
+            <li>[Insert any other documentation required by the Entity]</li>
+        </ol>
+
+        <p>We confirm that our quotation is subject to the General Conditions of Contract of the Government of Sierra Leone and is based on the terms and conditions stated in your Request for Quotation.</p>
+        <p>We confirm that the prices quoted are fixed and firm for the duration of the validity period and will not be subject to revision or variation.</p>
+
+        <p>Quotation Authorisation:</p>
+        <p>Signed: <input type="text" name="signature_authorisation"> Date: <input type="date" name="date_authorisation"></p>
+        <p>Name: <input type="text" name="name_authorisation"> Title/Position: <input type="text" name="title_authorisation"></p>
+        <p>Authorised for and on behalf of (Company name and seal): <input type="text" name="company_authorisation"></p>
+        <p>Registered Address: <input type="text" name="address_authorisation"></p>
+    </form>
+
+    <h4>SECTION C: ACTIVITY SCHEDULE (TO BE PRICED BY BIDDER)</h4>
+    <table>
+        <tr>
+            <th>Item No.</th>
+            <th>Description of Activity</th>
+            <th>Price in Leones</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Warehouse Repairs of Leakage on (Store Four {4} and the Free Health Care Store in Freetown)</td>
+            <td><input type="number" name="price_activity_1"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Labour Cost</td>
+            <td><input type="number" name="labour_cost"></td>
+        </tr>
+    </table>
+    <p>Total Lump Sum Price: <input type="number" name="total_lump_sum"></p>
+
+    <h4>SECTION D: TECHNICAL DATA</h4>
+    <table>
+        <tr>
+            <th>Item No</th>
+            <th>Technical Data</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Zinc</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Timber 2*8</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Roofing Fillet</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Roofing Nails</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Packet Nail</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Corner Ridges</td>
+        </tr>
+    </table>
+    <p>We confirm that we comply with the technical requirements as detailed above.</p>
+    <p>Authorised by:</p>
+    <p>Signature: <input type="text" name="technical_signature"> Name: <input type="text" name="technical_name"> Date: <input type="date" name="technical_date"></p>
+  </main><!-- End #main -->
+
+  <footer id="footer" class="footer">
+    <div class="copyright">
+    </div>
+    <div class="credits">
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/panel/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/panel/vendor/chart.js/chart.umd.js"></script>
+  <script src="/panel/vendor/echarts/echarts.min.js"></script>
+  <script src="/panel/vendor/quill/quill.min.js"></script>
+  <script src="/panel/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/panel/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/panel/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/panel/js/main.js"></script>
+  
+</body>
+
+</html>

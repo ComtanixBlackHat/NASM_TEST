@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Memo - NMSA</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+
+    .header {
+      font-weight: bold;
+      text-align: left;
+      line-height: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center the image */
+    }
+
+    .header img {
+      height: 100px; /* Adjust the height as needed */
+    }
+
+    .form-title {
+      text-align: center;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .memo-content {
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #000;
+    }
+
+    .editable {
+      border: none;
+      display: inline-block;
+      text-decoration: underline;
+      min-height: 1.5em; /* Ensures there's a visible line even if empty */
+      background: linear-gradient(transparent 90%, black 90%);
+      background-repeat: repeat-x;
+      background-size: 100% 1px; /* Adjust the thickness of the underline */
+    }
+
+    .editable:focus {
+      outline: none;
+    }
+
+    .sign-section {
+      margin-top: 50px;
+    }
+
+    .signature {
+      margin-top: 40px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px; /* Adds space between the buttons */
+      margin-top: 20px;
+    }
+
+    .submit-btn{
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .print-btn {
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover, .print-btn:hover {
+      background-color: green;
+    }
+
+    .header {
+      justify-content: flex-start; /* Aligns all the content to the left */
+    }
+    
+    .header .align-left {
+      margin-left: 0; /* Ensures there's no unnecessary margin or padding on the left */
+    }
+    
+    .logo {
+      margin-right: auto; /* Ensures the logo stays on the left */
+    }
+    
+    .toggle-sidebar-btn {
+      margin-left: 20px; /* Adjust this value as needed for spacing */
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      .memo-content, .memo-content * {
+        visibility: visible;
+      }
+
+      .memo-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+
+      /* Hide the submit and print buttons when printing */
+      .submit-btn, .print-btn {
+        display: none;
+      }
+
+      .editable {
+        border: none;
+        display: inline-block;
+        text-decoration: none;
+        min-height: 1.5em; /* Ensures there's a visible line even if empty */
+        background: linear-gradient(transparent 90%, black 90%);
+        background-repeat: repeat-x;
+        background-size: 100% 1px; /* Adjust the thickness of the underline */
+      }
+    }
+  </style>
+  <!-- Favicons -->
+  <link href="/panel/img/favicon.png" rel="icon">
+  <link href="/panel/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/panel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/panel/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/panel/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/panel/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/panel/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/panel/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header id="header" class="header fixed-top d-flex align-items-start align-left">
+    <div class="d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="/panel/logo/headerlogo.jpg" class="d-flex align-items-center" style="height: fit-content;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+  </header>
+
+  <aside id="sidebar" class="sidebar hideInprint">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <!-- 1. Memo Form (for request)
+      2. ⁠SPF1
+      
+      For procurement department 
+      3. RFQ (Next on each page)
+      4. ⁠Eva
+      5. ⁠LPO -->
+      <li class="nav-item collapsed">
+        <a class="nav-link" href="/procurments/dashboard/memo">
+          <i class="bi bi-grid"></i>
+          <span>Memo</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard/spd1">
+          <i class="bi bi-grid"></i>
+          <span>SPF 1</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard/eva">
+          <i class="bi bi-grid"></i>
+          <span>EVA</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard">
+          <i class="bi bi-grid"></i>
+          <span>RFQ</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard/lpo">
+          <i class="bi bi-grid"></i>
+          <span>LPO</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <!-- Logout Button -->
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/login">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Logout Nav -->
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h2>Memo</h2>
+    </div><!-- End Page Title -->
+
+    <div class="memo-content">
+      <div class="header" style="height:150px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;">
+        <!-- <img src="/assets/header.png" alt="Logo" style="text-align: center"> -->
+        <img src="/panel/logo/Header.jpg" alt="Logo" style="text-align: center;">
+    </div>
+
+      <div>
+        <strong>TO:</strong> <span contenteditable="false">The Director of Procurements</span>
+      </div>
+      <div>
+        <strong>FROM:</strong> <span class="editable" contenteditable="true">The National Logistics Manager</span>
+      </div>
+      <div>
+        <strong>Date:</strong> <span class="editable" contenteditable="true">11th July, 2024</span>
+      </div>
+
+      <div class="form-title">
+        REQUEST FOR <span class="editable" contenteditable="true">MAINTENANCE OF FHC COLD CHAIN</span>
+      </div>
+
+      <div>
+        I refer to the above subject and hereby request for the procurement process for <span class="editable"
+          contenteditable="true">maintenance of the free health care cold chain. As you may be aware, the cold chain at
+          the free health care store has broken down for months, causing storage space challenges and ultimately cold
+          chain product to depreciate in value and lose its potency.</span>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <span class="editable" contenteditable="true">
+          Your urgent response to this matter is critical to the above subject.
+        </span>
+      </div>
+
+      <div class="sign-section">
+        <div class="signature">
+          Yours truly,
+        </div>
+        <div class="signature">
+          <span class="editable" contenteditable="true">Aminata Bangura</span><br>
+          <span class="editable" contenteditable="true">National Logistics Manager</span><br>
+          <span>NMSA</span>
+        </div>
+      </div>
+<script>
+   function printMemo() {
+      window.print();
+    }
+</script>
+      <!-- Button container with both buttons aligned to the right -->
+      <div class="button-container">
+        <button class="submit-btn" onclick="submitMemo()">Submit</button>
+        <button class="print-btn"  onclick="printMemo()">Save PDF</button>
+      </div>
+
+    </div>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/panel/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/panel/vendor/chart.js/chart.umd.js"></script>
+  <script src="/panel/vendor/echarts/echarts.min.js"></script>
+  <script src="/panel/vendor/quill/quill.min.js"></script>
+  <script src="/panel/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/panel/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/panel/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/panel/js/main.js"></script>
+
+  <script>
+    function submitMemo() {
+      // Get all elements with class 'editable'
+      const editables = document.querySelectorAll('.editable');
+
+      // Log each editable element's content
+      editables.forEach((editable, index) => {
+        console.log(`Editable ${index + 1}:`, editable.textContent.trim());
+      });
+    }
+
+   
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Local Purchase Order - NMSA</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+
+    .header {
+      font-weight: bold;
+      text-align: left;
+      line-height: 2;
+    }
+
+    .form-title {
+      text-align: center;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .memo-content {
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #000;
+    }
+
+    .editable {
+      border: none;
+      display: inline-block;
+      text-decoration: underline;
+      min-height: 1.5em; /* Ensures there's a visible line even if empty */
+      background: linear-gradient(transparent 90%, black 90%);
+      background-repeat: repeat-x;
+      background-size: 100% 1px; /* Adjust the thickness of the underline */
+    }
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px; /* Adds space between the buttons */
+      margin-top: 20px;
+    }
+
+    .submit-btn{
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .print-btn {
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .editable:focus {
+      outline: none;
+    }
+
+    .sign-section {
+      margin-top: 50px;
+    }
+
+    .signature {
+      margin-top: 40px;
+    }
+
+    /* .submit-btn, .print-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    } */
+
+    .submit-btn:hover, .print-btn:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .memo-content, .memo-content * {
+        visibility: visible;
+      }
+      .memo-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+  <!-- Favicons -->
+  <link href="/panel/img/favicon.png" rel="icon">
+  <link href="/panel/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/panel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/panel/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/panel/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/panel/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/panel/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/panel/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="/panel/logo/headerlogo.jpg" class="d-flex align-items-center" style="height: fit-content;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+  </header>
+
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <!-- 1. Memo Form (for request)
+      2. ⁠SPF1
+      
+      For procurement department 
+      3. RFQ (Next on each page)
+      4. ⁠Eva
+      5. ⁠LPO -->
+      <li class="nav-item collapsed">
+          <a class="nav-link collapsed" href="/procurments/dashboard/memo">
+            <i class="bi bi-grid"></i>
+            <span>Memo</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+            
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/procurments/dashboard/spd1">
+            <i class="bi bi-grid"></i>
+            <span>SPF 1</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item collapsed">
+          <a class="nav-link collapsed" href="/procurments/dashboard/eva">
+            <i class="bi bi-grid"></i>
+            <span>EVA</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+        
+      <li class="nav-item collapsed">
+          <a class="nav-link collapsed" href="/procurments/dashboard">
+            <i class="bi bi-grid"></i>
+            <span>RFQ</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+
+
+        <li class="nav-item collapsed">
+          <a class="nav-link" href="/procurments/dashboard/lpo">
+            <i class="bi bi-grid"></i>
+            <span>LPO</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+
+
+         <!-- Logout Button -->
+    <li class="nav-item collapsed">
+      <a class="nav-link collapsed" href="/procurments/login">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Logout</span>
+      </a>
+    </li><!-- End Logout Nav -->
+  </ul>
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+    <div class="memo-content">
+      <div class="header" style="height:150px; margin-bottom : 20px; text-align:center">
+        <img src="/panel/logo/Header.jpg" alt="Logo" width="680px" style="text-align : center">
+      
+      </div>
+      <br>
+      <h2 class="form-title">Local Purchase Order</h2>
+    
+
+      <p><strong>LOCAL PURCHASE ORDER</strong></p>
+        <br>
+        <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+          <tr>
+              <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+          </tr>
+      </table>
+      
+    
+      <!-- Main Table -->
+      <table class="container" style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+          <tr>
+              <th style="border: 1px solid #000; padding: 8px;">Procuring Entity</th>
+              <th style="border: 1px solid #000; padding: 8px;">Department/Project</th>
+              <th style="border: 1px solid #000; padding: 8px;">Seq. NO.</th>
+              <th style="border: 1px solid #000; padding: 8px;">Bid/RFQ/RFP</th>
+              <th style="border: 1px solid #000; padding: 8px;">PO No </th>
+              <th style="border: 1px solid #000; padding: 8px;"> FY</th>
+          </tr>
+          <tr>
+              <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="NMSA"></td>
+              <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="Operations"></td>
+              <td style="border: 1px solid #000; padding: 8px;"><input type="number" class="editable" value="2024"></td>
+              <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="0031"></td>
+              <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="0031"></td>
+              <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="033"></td>
+          </tr>
+      </table>
+      <!-- Procuring Entity Department Seq. NO. Bid/RFQ/RFP No PO No FY -->
+
+
+      
+        <!-- <span contenteditable="true">No.24 Goderich Street, Freetown</span></p> -->
+
+        
+        
+          <div class="row">
+            <div class="col-2">
+              <p><strong>To:&nbsp;&nbsp;</strong><span contenteditable="true">Dozic Enterprises</span><br>
+            </div>
+            <div class="col-8">
+             
+            </div>
+            <div class="col-2">
+              <p><strong>Date:&nbsp;&nbsp;</strong><span id="currentDate"></span></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <strong>
+              <p><span contenteditable="true">No.24 Goderich Street, Freetown
+                Freetown.</span></strong>
+            </div>
+            <div class="col-8">
+             
+            </div>
+            <div class="col-2">
+              <!-- <p><strong>Date:&nbsp;&nbsp;</strong><span id="currentDate"></span></p> -->
+            </div>
+          </div>
+         
+        
+        <script>
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', options);
+        </script>
+        
+
+      <p contenteditable="true">Your quotation in reference to our RFQ dated 28th June 2024 is accepted and you are required to undertake the service and supply of goods as detailed on the attached Schedule of Requirements against the terms contained in this Purchase Order. This order is placed subject to the attached General Conditions of Contract for Local Purchase Orders, except where modified by the terms stated below.</p>
+
+      <p><strong>Specific Terms of this Purchase Order:</strong></p>
+      <ul>
+        <li><strong>Contract Sum:</strong> <span contenteditable="true">The Contract Sum is Forty Eight Thousand Six Hundred Leones only (SLE 48,600.00)</span></li>
+        <li><strong>Prices:</strong> <span contenteditable="true">This is a fixed price contract.</span></li>
+        <li><strong>Service Period:</strong> <span contenteditable="true">The Service must be delivered for a period of Five (5) working days from the date of this purchase order.</span></li>
+        <li><strong>Service point:</strong> <span contenteditable="true">Fawaz Warehouse, Ferry Junction, Freetown.</span></li>
+        <li><strong>Contact Person:</strong> <span contenteditable="true">Enquiries and documentation should be addressed to:
+          <br>Idrissa Sankoh, Procurement Officer, National Medical Supplies Agency, 31 Murray Town Road, Freetown, Sierra Leone</span></li>
+        <li><strong>Payment to Supplier:</strong>
+          <ul>
+            <li><span contenteditable="true">Payment will be made in full within forty-five (45) days on completion of satisfactory performance of the contract.</span></li>
+            <li><strong><span contenteditable="true">The following documentation must be supplied for payments to be made:</span></strong>
+              <ul>
+                <li><span contenteditable="true">Original copy of an Invoice;</span></li>
+                <li><span contenteditable="true">A service completion certificate evidencing completion of service.</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong><span contenteditable="true">The following documents attached as appendices form part of this Contract:</span></strong>
+          <ul>
+            <li><span contenteditable="true">Government of Sierra Leone General Conditions of Contract for Local Purchase Orders;</span></li>
+          </ul>
+        </li>
+    </ul>
+    
+
+      <p>Purchase Order Authorised by:<br><br>
+        <span><strong>Signature</strong><span editable=True></span contenteditable="true">__________________</span></p>  
+      <span class="editable">Madam Jatu J Abdulia</span></p>
+      
+      <p>Acting Managing Diractor </p>
+      <h3 class="form-title">LOCAL PURCHASE ORDER</h3>
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid #000; padding: 8px;">Procuring Entity</th>
+            <th style="border: 1px solid #000; padding: 8px;">Department/Project</th>
+            <th style="border: 1px solid #000; padding: 8px;">Seq. NO.</th>
+            <th style="border: 1px solid #000; padding: 8px;">Bid/RFQ/RFP</th>
+            <th style="border: 1px solid #000; padding: 8px;">PO No </th>
+            <th style="border: 1px solid #000; padding: 8px;"> FY</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="NMSA"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="Operations"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="number" class="editable" value="2024"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="0031"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="0031"></td>
+            <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="033"></td>
+        </tr>
+    </table>
+
+      <h3 class="form-title">SCHEDULE OF REQUIREMENTS/ACTIVITY SCHEDULE</h3>
+      <div class="container-sm"></div>
+      
+      <table id="itemTable">
+        <thead>
+            <tr>
+                <th>Item No</th>
+                <th>Description (Goods and Service)</th>
+                <th>Quantity</th>
+                <th>Cost per unit</th>
+                <th>Total Price (SLE)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" value="1" oninput="updateRow(this)" /></td>
+                <td><input type="text" value="Fork Lift Repairs and Maintenance" oninput="updateRow(this)" /></td>
+                <td><input type="number" value="2" oninput="updateRow(this)" /></td>
+                <td><input type="number" value="45600.00" oninput="updateRow(this)" /></td>
+                <td class="total-price">91200.00</td>
+                <td><button class="button" onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="2" oninput="updateRow(this)" /></td>
+                <td><input type="text" value="Workmanship" oninput="updateRow(this)" /></td>
+                <td><input type="number" value="2" oninput="updateRow(this)" /></td>
+                <td><input type="number" value="1500.00" oninput="updateRow(this)" /></td>
+                <td class="total-price">3000.00</td>
+                <td><button class="button" onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button class="button" onclick="addRow()">Add New Item</button>
+
+    <div class="total-container">
+        <strong>Total Order Price:</strong> <span id="totalPrice">94,200.00</span>
+    </div>
+
+    <script>
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll('#itemTable tbody .total-price').forEach(cell => {
+                let totalPrice = parseFloat(cell.textContent.replace(/[^0-9.-]+/g, ""));
+                if (!isNaN(totalPrice)) {
+                    total += totalPrice;
+                }
+            });
+            document.getElementById('totalPrice').textContent = total.toFixed(2);
+        }
+
+        function updateRow(input) {
+            const row = input.closest('tr');
+            const quantity = parseFloat(row.cells[2].querySelector('input').value);
+            const costPerUnit = parseFloat(row.cells[3].querySelector('input').value);
+            const totalPriceCell = row.querySelector('.total-price');
+
+            if (!isNaN(quantity) && !isNaN(costPerUnit)) {
+                const totalPrice = quantity * costPerUnit;
+                totalPriceCell.textContent = totalPrice.toFixed(2);
+            } else {
+                totalPriceCell.textContent = '0.00';
+            }
+            updateTotal();
+        }
+
+        function addRow() {
+            const tableBody = document.querySelector('#itemTable tbody');
+            const rowCount = tableBody.rows.length;
+
+            const newRow = tableBody.insertRow(-1);
+            newRow.innerHTML = `
+                <td><input type="text" value="${rowCount + 1}" oninput="updateRow(this)" /></td>
+                <td><input type="text" value="New Item Description" oninput="updateRow(this)" /></td>
+                <td><input type="number" value="1" oninput="updateRow(this)" /></td>
+                <td><input type="number" value="0.00" oninput="updateRow(this)" /></td>
+                <td class="total-price">0.00</td>
+                <td><button class="button" onclick="deleteRow(this)">Delete</button></td>
+            `;
+
+            updateTotal();
+        }
+
+        function deleteRow(button) {
+            const row = button.closest('tr');
+            row.remove();
+            updateTotal();
+        }
+
+        // Initialize event listeners for existing rows
+        document.querySelectorAll('#itemTable tbody tr').forEach(row => {
+            row.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', function() {
+                    updateRow(this);
+                });
+            });
+        });
+
+        updateTotal();
+    </script>
+
+    <p><strong>Receipt of Order by the Supplier:</strong></p>
+    <p>
+        Signature: <span class="editable" contenteditable="true">____________________</span>
+        Name: <span class="editable" contenteditable="true">____________________</span><br>
+        Position: <span class="editable" contenteditable="true">____________________</span>
+        On behalf of: <span class="editable" contenteditable="true">____________________</span><br>
+        Date: <span class="editable"><input type="date" /></span>
+    </p>
+      <h3 class="form-title">Integrity Pact Form</h3>
+
+<!-- ------------------------------------ -->
+
+<div class="form-section" >
+  
+  <p><strong style=" font-size: 25px; ">This  Integrity Pact </strong>is entered into on the <span class="editable"><input type="text" placeholder="Day" size="3" /></span>th day of <span ><input type="text" placeholder="Month" /></span>, in the Year of Our Lord <span class="editable"><input type="text" placeholder="Year" /></span> Between</p>
+  <p><strong><span class="editable" contenteditable="true">NATIONAL MEDICAL SUPPLIES AGENCY</span></strong>, hereinafter referred to as “<strong>Purchaser</strong>”,</p>
+  <p>and</p>
+  <p><strong><span class="editable" contenteditable="true">Dozic Enterprises</span></strong>, hereinafter referred to as “<strong>Supplier</strong>”</p>
+
+  <p><strong>Preamble</strong></p>
+  <p>Whereas “the Parties” are cognizant of the scourge of corruption and its negative effects on the development of a country and are aware also of the immense benefits which doing business in a corruption free environment holds for their individual businesses as well as for the country as a whole</p>
+  <p><strong style=" font-size: 25px; ">AND Whereas</strong> corruption and corrupt practices in the form of procurement violations particularly conflict of interest have been identified as an area for immediate and targeted attention in the relationship between the public service and the private sector</p>
+  <p><strong style=" font-size: 25px; ">AND Whereas</strong>AND Whereas the parties now wish to further commit themselves to actions which will promote a corruption free business environment including full compliance with all relevant laws, rules and regulations which may currently be in force relating to anti-corruption and good business practices in line with the Anti-Corruption Act, 2008 and other government initiatives relating to the private sector in Sierra Leone</p>
+  <p>The Parties hereby commit themselves and pledge as follows:</p>
+  <ol>
+      <li>To maintain a strict and unwavering adherence to good business practices in the execution of all their undertakings.</li>
+      <li>To take all measures necessary to prevent corruption in their mutual and other dealings.</li>
+      <li>To observe and implement recommendations, instructions or directives from the Anti-Corruption Commission made pursuant to the Anti-Corruption Act 2008.</li>
+      <li>To uphold, implement, and maintain a No bribery policy in the conduct of their transactions.</li>
+  </ol>
+  <p><strong>Reporting violations</strong></p>
+  <ol>
+      <li>To promptly inform the Anti-Corruption Commission of any employee, agent, representative, or an associate, whether its own or of the other Party, who conduct may constitute corruption, or is likely to engender corruption or corrupt practices.</li>
+  </ol>
+  <p><strong>Conflict of Interest</strong></p>
+  <ol>
+      <li>To actively guard against Conflict of Interest including situations when an employee or staff’s interest may interfere with the interests of the enterprise/organization to which he/she is employed.</li>
+      <li>To insist that employees or staff shall disclose to the enterprise/organization any situation that reasonably would be expected to give rise to a conflict of interest or the appearance of the same.</li>
+      <li>To ensure that employees or staff obtain approval prior to accepting any position to serve on a board of directors, an advisory board, or on a committee of any entity.</li>
+      <li>That no employee/staff may obtain any personal material benefit or favour because of his or her position with the enterprise/organization.</li>
+      <li>That no employee/staff may have financial interest (indirect ownership, direct ownership, or otherwise) in a company whose business/operations relate to his/her post, functions held or otherwise supervised in his/her current employment.</li>
+      <li>To closely monitor and regulate actual or potential conflict of interests, occasioned by the influence of certain social relationships on the objectivity of the employee/staff in making dispassionate judgment on behalf of the enterprise/organization.</li>
+  </ol>
+  <p><strong style=" font-size: 25px; ">THE PARTIES HEREBY</strong> demonstrate their pledge and commitment to the above Principles by signing hereunder on the day and year above first written</p>
+  <p><strong style=" font-size: 25px; ">AND THEY FURTHER DECLARE</strong> that this pledge shall have the same binding effect as any policy instrument that the parties use in the management of their business/entity.</p>
+</div>
+<!-- ================================= -->
+
+
+    <!-- ------------------------------------ -->
+    <div class="signature-section">
+      <p><strong>SIGNATURE ……………………………………..…DATE:…………………………..</strong> (PROCURING ENTITY)</p>
+      <p>In the presence of:</p>
+      <p>Name: <span class="editable"><input type="text" placeholder="Name" /></span></p>
+      <p>Address: <span class="editable" contenteditable="true">____________________________</span></p>
+      <p>Designation: <span class="editable" contenteditable="true">____________________________</span></p>
+      <p>SIGNATURE: <span class="editable" contenteditable="true">____________________________</span> DATE: <span class="editable"><input type="date" /></span></p>
+      <p>SIGNATURE: <span class="editable" contenteditable="true">____________________________</span> DATE: <span class="editable"><input type="date" /></span> (SUPPLIER)</p>
+  </div>
+  <div class="signature-section">
+    <p><strong>In the presence of:</strong></p>
+    <p>Name:  <span class="editable" contenteditable="true">____________________________</span></p>
+    <p>Address:  <span class="editable" contenteditable="true">____________________________</span></p>
+    <p>Designation:  <span class="editable" contenteditable="true">____________________________</span></p>
+    <p>SIGNATURE: <span class="editable" contenteditable="true">____________________________</span> DATE: <input type="date" class="inline-input" /></p>
+</div>
+    </div>
+
+    <div class="button-container">
+      <button class="submit-btn" onclick="submitMemo()">Submit</button>
+      <button class="print-btn"  onclick="printMemo()">Save PDF</button>
+    </div>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/panel/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/panel/vendor/chart.js/chart.umd.js"></script>
+  <script src="/panel/vendor/echarts/echarts.min.js"></script>
+  <script src="/panel/vendor/quill/quill.min.js"></script>
+  <script src="/panel/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/panel/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/panel/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/panel/js/main.js"></script>
+
+  <script>
+    function submitMemo() {
+      // Get all elements with class 'editable'
+      const editables = document.querySelectorAll('.editable');
+
+      // Log each editable element's content
+      editables.forEach((editable, index) => {
+        console.log(`Editable ${index + 1}:`, editable.textContent.trim());
+      });
+    }
+
+    function printMemo() {
+      window.print();
+    }
+  </script>
+
+</body>
+
+</html>

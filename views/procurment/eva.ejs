@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Local Purchase Order - NMSA</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+
+@media print {
+    .hide-when-print {
+        display: none;
+    }
+    #supplierTable{
+    transform: scale(0.5);
+    transform-origin: top left;
+    width: 200%; /* Adjust if needed to maintain the overall width */
+}
+}
+    .header {
+      font-weight: bold;
+      text-align: left;
+      line-height: 2;
+    }
+
+    .form-title {
+      text-align: center;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .memo-content {
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #000;
+    }
+
+    .editable {
+      border: none;
+      display: inline-block;
+      text-decoration: underline;
+      min-height: 1.5em; /* Ensures there's a visible line even if empty */
+      background: linear-gradient(transparent 90%, black 90%);
+      background-repeat: repeat-x;
+      background-size: 100% 1px; /* Adjust the thickness of the underline */
+    }
+    
+    .editable:focus {
+      outline: none;
+    }
+
+    .sign-section {
+      margin-top: 50px;
+    }
+
+    .signature {
+      margin-top: 40px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px; /* Adds space between the buttons */
+      margin-top: 20px;
+    }
+
+    .submit-btn{
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .print-btn {
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+
+    .submit-btn:hover, .print-btn:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+        margin: 0;
+      }
+      .memo-content, .memo-content * {
+        visibility: visible;
+      }
+      .memo-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+      /* #supplierTable {
+                width: 100%; /* Full width for print */
+                /* transform: none; /* Remove scaling for print */
+            /* } */ 
+
+            /* Ensure table fits within printable area */
+            @page {
+                size: auto;
+                margin: 10mm; /* Adjust margin as needed */
+            }
+
+           
+    }
+
+    
+  </style>
+  <!-- Favicons -->
+  <link href="/panel/img/favicon.png" rel="icon">
+  <link href="/panel/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/panel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/panel/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/panel/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/panel/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/panel/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/panel/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="/panel/logo/headerlogo.jpg" class="d-flex align-items-center" style="height: fit-content;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+  </header>
+
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <!-- 1. Memo Form (for request)
+      2. ⁠SPF1
+      
+      For procurement department 
+      3. RFQ (Next on each page)
+      4. ⁠Eva
+      5. ⁠LPO -->
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="/procurments/dashboard/memo">
+            <i class="bi bi-grid"></i>
+            <span>Memo</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+            
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/procurments/dashboard/spd1">
+            <i class="bi bi-grid"></i>
+            <span>SPF 1</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+
+        
+      <li class="nav-item collapsed">
+          <a class="nav-link collapsed" href="/procurments/dashboard">
+            <i class="bi bi-grid"></i>
+            <span>RFQ</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+        <li class="nav-item collapsed">
+          <a class="nav-link" href="/procurments/dashboard/eva">
+            <i class="bi bi-grid"></i>
+            <span>EVA</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+
+        <li class="nav-item collapsed">
+          <a class="nav-link collapsed" href="/procurments/dashboard/lpo">
+            <i class="bi bi-grid"></i>
+            <span>LPO</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+
+
+         <!-- Logout Button -->
+    <li class="nav-item collapsed">
+      <a class="nav-link collapsed" href="/procurments/login">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Logout</span>
+      </a>
+    </li><!-- End Logout Nav -->
+  </ul>
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+    <div class="memo-content">
+      <div class="header" style="height:150px; margin-bottom : 20px; text-align:center">
+        <img src="/panel/logo/Header.jpg" alt="Logo" width="680px" style="text-align : center">
+      
+      </div>
+      <p><strong>Date:</strong> <span id="currentDate"></span></p>
+
+<div>
+  
+  
+  <!-- <p><strong><u>EVALUATION OF REQUEST FOR QUOTATIONS (RFQs) IN RESPECT OF</u></strong></p> -->
+</div>
+
+<div class="row">
+  <div class="col col-sm-3"></div>
+  <div class="col-xl-7">
+      <h5><p><strong><u>EVALUATION OF REQUEST FOR QUOTATIONS (RFQs) IN RESPECT OF</u></strong></p></h5>
+  </div>
+  <div class="col-2"></div>
+</div>
+
+<div class="row">
+  <div class="col col-sm-1"></div>
+  <div class="col-xl-9" style="margin-left:20px ;">
+      <h5><p><u contenteditable="true">DISTRIBUTION OF MEDICAL COMMODITIES IN FALABA & BONTHE DISTRICTS.</u></p></h5>
+  </div>
+  <div class="col-2"></div>
+</div>
+
+<div class="row">
+  <!-- <div class="col-2"></div> -->
+  <div class="col col-sm-3"></div>
+  <div class="col-xl-7">
+      <p><span contenteditable="true">The procurement unit has received three (3) Quotations in respect of Distribution</span></p>
+  </div>
+</div>
+
+<div class="row" style="text-align: center;">
+  <div class="col-2"></div>
+  <div class="col-xl-7">
+      <p><span contenteditable="true">of Medical Commodities in Falaba and Bonthe Districts as of <span id="currentDate"></span></span></p>
+  </div>
+</div>
+
+<div class="row" >
+  <div class="col col-sm-3"></div>
+  <div class="col-xl-7">
+      <p><span contenteditable="true">and assessed firstly based on the RFQ Requirements below:</span></span>
+  </div>
+</div>
+
+<script>
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', options);
+</script>
+
+<table>
+  <thead>
+      <tr>
+          <th>No</th>
+          <th>Requirements</th>
+          <th>Bahfaja Transport & General Services</th>
+          <th>Business Integration Service</th>
+          <th>Lenora Construction & General Services</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td contenteditable="true">1</td>
+          <td contenteditable="true">Copy of Valid Business License</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">C</td>
+      </tr>
+      <tr>
+          <td contenteditable="true">2</td>
+          <td contenteditable="true">Copy of Valid Business Registration Certificate</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">C</td>
+      </tr>
+      <tr>
+          <td contenteditable="true">3</td>
+          <td contenteditable="true">Copy of Valid NRA Tax Clearance Certificate (Last 3 Financial Years)</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">N/C</td>
+      </tr>
+      <tr>
+          <td contenteditable="true">4</td>
+          <td contenteditable="true">NASSIT Clearance</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">N/C</td>
+      </tr>
+      <tr>
+          <td contenteditable="true">5</td>
+          <td contenteditable="true">Municipal/Freetown City Council License</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">C</td>
+          <td contenteditable="true">N/C</td>
+      </tr>
+      <tr>
+          <td contenteditable="true">6</td>
+          <td contenteditable="true">List of Recent Contracts Performed (Where Applicable)</td>
+          <td contenteditable="true">N/C</td>
+          <td contenteditable="true">N/C</td>
+          <td contenteditable="true">N/C</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<p>Key: C = Compliant, N/C = Non-Compliant, N/A = Not Applicable</p>
+
+<p contenteditable="true">The considered reasons outlined above are a significant deviation from the requirement of the Request for Quotation (RFQ) document issued by the Procurement Unit on the 2 February 2024 and were set aside accordingly.</p>
+
+<p contenteditable="true">Based on the pricing quoted on the RFQs received, the prices were compared based on the Standard Assessment Matrix (SAM) below:</p>
+
+<!-- //////////////////////////////////////////// -->
+
+<div class="row">
+  <div class="col-12">
+    <!-- Add the div wrapper here -->
+    <div style="max-height: 300px; overflow: auto;">
+      <table id="supplierTable">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name of Supplier</th>
+            <th>Address</th>
+            <th>Valid Bus. Registration Document</th>
+            <th>Service Period (7 Days)</th>
+            <th>Validity Period (45 Days)</th>
+            <th>Warranty Period (3 Months)</th>
+            <th>Total Cost (SLLE)</th>
+            <th>Comments</th>
+            <th class="hide-when-print">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><input type="text" value="Bahfaja Transport & General Services"></td>
+            <td><input type="text" value="No.2 Peace Market Ferry Junction, Freetown"></td>
+            <td><input type="text" value="YES"></td>
+            <td><input type="text" value="7 (Seven) Days"></td>
+            <td><input type="text" value="45 (Forty-Five) Days"></td>
+            <td><input type="text" value="N/A"></td>
+            <td><input type="text" value="New Currency = Le 73,809.00"></td>
+            <td><input type="text" value="Responsive"></td>
+            <td><button class="hide-when-print" onclick="removeRow(this)">Remove</button></td> 
+          </tr>
+        </tbody>
+      </table>
+    </div> <!-- End of div wrapper -->
+  </div>
+</div>
+<div class="button-container">
+  <button onclick="addRow()">Add Row</button>
+</div>
+
+<script>
+  function addRow() {
+      const table = document.getElementById("supplierTable").getElementsByTagName("tbody")[0];
+      const rowCount = table.rows.length;
+      const row = table.insertRow(rowCount);
+      const cellCount = table.rows[0].cells.length;
+
+      for (let i = 0; i < cellCount; i++) {
+          const newCell = row.insertCell(i);
+          if (i === 0) {
+              newCell.innerHTML = rowCount + 1;
+          } else if (i === cellCount - 1) {
+              newCell.innerHTML = `<button class="hide-when-print" onclick="removeRow(this)">Remove</button>`;
+          } else {
+              newCell.innerHTML = `<input type="text">`;
+          }
+      }
+  }
+
+  function removeRow(button) {
+      const row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+  }
+</script>
+<!-- -------------------------------- -->
+<p contenteditable="true">
+  Based on the analysis of the above matrix, Bahfaja Transport & General Services 
+  of No. 2 Peace Market Ferry Junction, Freetown is recommended to undertake 
+  the service as requested in the Request For Quotation for a total amount of SLLE 
+  73,809.00 (Seventy-Three Thousand Eight Hundred and Nine Leones only), being 
+  the responsive substantially evaluated quotation received.
+</p>
+
+      <!-- ----------------------------------------- -->
+      <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+        <div style="text-align: center;">
+            <p>…………………………</p>
+            <p contenteditable="true">Idrissa Sankoh</p>
+            <p>Procurement Officer</p>
+            <p><input type="date"></p>
+            <p><input type="date"></p>
+          </div>
+    
+        <div style="text-align: center;">
+            <p>…………………………</p>
+            <p contenteditable="true">Thomas B Aruna</p>
+            <p>Director of Procurement</p>
+            
+        </div>
+    </div>
+    
+
+    <!-- --------------------------------------------- -->
+    
+    
+    </div>
+    <div class="button-container">
+      <button class="submit-btn" onclick="submitMemo()">Submit</button>
+      <button class="print-btn"  onclick="printMemo()">Save PDF</button>
+    </div>
+    <!-- <button class="submit-btn" onclick="submitMemo()">Submit</button>
+    <button class="print-btn" onclick="printMemo()">Print</button> -->
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/panel/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/panel/vendor/chart.js/chart.umd.js"></script>
+  <script src="/panel/vendor/echarts/echarts.min.js"></script>
+  <script src="/panel/vendor/quill/quill.min.js"></script>
+  <script src="/panel/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/panel/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/panel/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/panel/js/main.js"></script>
+
+  <script>
+    function submitMemo() {
+      // Get all elements with class 'editable'
+      const editables = document.querySelectorAll('.editable');
+
+      // Log each editable element's content
+      editables.forEach((editable, index) => {
+        console.log(`Editable ${index + 1}:`, editable.textContent.trim());
+      });
+    }
+
+    function printMemo() {
+      document.querySelectorAll('button').forEach(button => button.style.display = 'none');
+      const editables = document.querySelectorAll('.editable');
+
+      const editableElements = document.querySelectorAll('.editable');
+
+// Iterate through each element and remove the text-decoration property
+editableElements.forEach(element => {
+    element.style.textDecoration = 'none'; // Remove underline
+});
+      window.print();
+      document.querySelectorAll('button').forEach(button => button.style.display = 'block');
+    }
+  </script>
+
+</body>
+
+</html>

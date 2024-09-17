@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .header {
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .form-title {
+      text-align: center;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      text-align: center;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .print-btn {
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .editable {
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .editable:focus {
+      outline: none;
+      border-bottom: 1px solid #000;
+    }
+
+    .add-row-button {
+      display: block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .add-row-button:hover {
+      background-color: #45a049;
+    }
+
+    @media print {
+      .header,
+      .sidebar,
+      .back-to-top {
+        display: none !important;
+      }
+
+      .logo {
+        display: none !important;
+      }
+
+      .main {
+        margin: 0 !important;
+        padding: 0;
+        width: 100%;
+      }
+
+      .container {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100%;
+      }
+
+      table {
+        width: 100% !important;
+      }
+
+      .hideInprint {
+        display: none !important;
+      }
+    }
+
+    /* Additional CSS for signature section */
+    .table-container {
+      margin-top: 20px;
+    }
+
+    .signature-column {
+      flex: 1;
+      margin: 0 10px;
+    }
+
+    .signature-column h4 {
+      text-align: center;
+    }
+
+    .signature-column table {
+      width: 100%;
+    }
+
+    .signature-column td {
+      padding: 4px;
+    }
+
+    .signature-column input {
+      width: 100%;
+    }
+
+    .signature-row {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+
+  <!-- Favicons -->
+  <link href="/panel/img/favicon.png" rel="icon">
+  <link href="/panel/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/panel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/panel/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/panel/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/panel/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/panel/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/panel/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="/panel/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.5.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="/panel/logo/headerlogo.jpg" class="d-flex align-items-center" style="height: fit-content;">
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div>
+  </header>
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar hideInprint">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard/memo">
+          <i class="bi bi-grid"></i>
+          <span>Memo</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/procurments/dashboard/spd1">
+          <i class="bi bi-grid"></i>
+          <span>SPF 1</span>
+        </a>
+      </li>
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard/eva">
+          <i class="bi bi-grid"></i>
+          <span>EVA</span>
+        </a>
+      </li>
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard">
+          <i class="bi bi-grid"></i>
+          <span>RFQ</span>
+        </a>
+      </li>
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/dashboard/lpo">
+          <i class="bi bi-grid"></i>
+          <span>LPO</span>
+        </a>
+      </li>
+      <!-- Logout Button -->
+      <li class="nav-item collapsed">
+        <a class="nav-link collapsed" href="/procurments/login">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main id="main" class="main">
+    <hr>
+    <div class="pagetitle"></div>
+    <hr>
+    <div class="container">
+      <div class="form-title row">
+        <div class="col-6">
+          <strong>PROCUREMENT REQUISITION</strong>
+        </div>
+        <div class="col-6 text-left">
+          <strong>Page __1_ of ___</strong>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Procurement Number Section -->
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="text-align: center; border: 1px solid #000;">Procurement Number</th>
+        </tr>
+      </table>
+
+      <!-- Main Table -->
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="border: 1px solid #000; padding: 8px;">Procuring Entity</th>
+          <th style="border: 1px solid #000; padding: 8px;">Department/Project</th>
+          <th style="border: 1px solid #000; padding: 8px;">Financial Year</th>
+          <th style="border: 1px solid #000; padding: 8px;">Sequence Number</th>
+          <th style="border: 1px solid #000; padding: 8px;">Bid Number</th>
+          <th style="border: 1px solid #000; padding: 8px;">Contract/PO Number</th>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="NMSA"></td>
+          <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="Operations"></td>
+          <td style="border: 1px solid #000; padding: 8px;"><input type="number" class="editable" value="2024"></td>
+          <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="0031"></td>
+          <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="0031"></td>
+          <td style="border: 1px solid #000; padding: 8px;"><input type="text" class="editable" value="033"></td>
+        </tr>
+      </table>
+
+      <!-- Subject of Procurement Table -->
+      <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+        <tr>
+          <th style="border: 1px solid #000; padding: 8px;">Subject of Procurement</th>
+          <td style="border: 1px solid #000; padding: 8px;">
+            <input type="text" class="editable" placeholder="Enter subject of procurement">
+          </td>
+        </tr>
+      </table>
+
+      <!-- Button to Add New Row -->
+      <button class="add-row-button" onclick="addRow()">Add New Item</button>
+      <hr>
+      <!-- Item Table -->
+      <h2>Item Table</h2>
+      <table id="itemTable">
+        <thead>
+          <tr>
+            <th>Item No</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Estimated Unit Cost SLE</th>
+            <th>Estimated Total Cost SLE</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="editable" placeholder="Enter item number"></td>
+            <td><input type="text" class="editable" placeholder="Enter description"></td>
+            <td><input type="number" class="editable" placeholder="Enter quantity" oninput="updateTotals()"></td>
+            <td><input type="number" class="editable" placeholder="Enter unit cost" oninput="updateTotals()"></td>
+            <td><input type="number" class="editable" placeholder="Enter total cost" readonly></td>
+            <td><button type="button" class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="total-row">
+            <td colspan="5"></td>
+            <td><strong>Total Estimated Total Cost SLE:</strong><span id="totalCost">0</span></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <table style="font-size: 12px; width: auto;">
+            <tr>
+              <td>
+                <h4>Vote Code</h4>
+              </td>
+              <td style="border: 1px solid #000; padding: 1px; width: 50px;"><input type="text" class="editable"
+                  value="" style="width: 100%; font-size: 12px;"></td>
+              <td style="border: 1px solid #000; padding: 1px; width: 50px;"><input type="text" class="editable"
+                  value="" style="width: 100%; font-size: 12px;"></td>
+              <td style="border: 1px solid #000; padding: 1px; width: 50px;"><input type="number" class="editable"
+                  value="" style="width: 100%; font-size: 12px;"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-1"></div>
+      </div>
+
+    </div>
+
+    <hr>
+    <!-- Signature Section -->
+    <div class="container table-container">
+      <p>
+        Signatures required to certify that (1) the works, services or supplies described are required, (2) funds are
+        available or budgeted for the requirement, and that (3) approval is granted to proceed with the procurement.
+      </p>
+    </div>
+
+    <div class="container table-container">
+      <div class="row">
+        <!-- First Column -->
+        <div class="col-md-4">
+          <h4>1. Originating Officer</h4>
+          <table class="table">
+            <tr>
+              <td>Signature</td>
+              <td><input type="text" class="form-control" placeholder="Signature"></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td><input type="text" class="form-control" placeholder="Name"></td>
+            </tr>
+            <tr>
+              <td>Position</td>
+              <td><input type="text" class="form-control" placeholder="Position"></td>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <td><input type="date" class="form-control"></td>
+            </tr>
+          </table>
+        </div>
+        <!-- Second Column -->
+        <div class="col-md-4">
+          <h4>2. Availability of Funds</h4>
+          <table class="table">
+            <tr>
+              <td>Signature</td>
+              <td><input type="text" class="form-control" placeholder="Signature"></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td><input type="text" class="form-control" placeholder="Name"></td>
+            </tr>
+            <tr>
+              <td>Position</td>
+              <td><input type="text" class="form-control" placeholder="Position"></td>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <td><input type="date" class="form-control"></td>
+            </tr>
+          </table>
+        </div>
+        <!-- Third Column -->
+        <div class="col-md-4">
+          <h4>3. Head of Department/Unit</h4>
+          <table class="table">
+            <tr>
+              <td>Signature</td>
+              <td><input type="text" class="form-control" placeholder="Signature"></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td><input type="text" class="form-control" placeholder="Name"></td>
+            </tr>
+            <tr>
+              <td>Position</td>
+              <td><input type="text" class="form-control" placeholder="Position"></td>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <td><input type="date" class="form-control"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2">
+      <div class="button-container" style="text-align: end;">
+        <button class="submit-btn" onclick="submitMemo()">Submit</button>
+        <button class="print-btn" onclick="saveAsPDF()">Save PDF</button>
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="credits">
+      <!-- Footer credits -->
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/panel/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/panel/vendor/chart.js/chart.umd.js"></script>
+  <script src="/panel/vendor/echarts/echarts.min.js"></script>
+  <script src="/panel/vendor/quill/quill.min.js"></script>
+  <script src="/panel/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/panel/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/panel/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/panel/js/main.js"></script>
+
+  <script>
+    function updateTotals() {
+      let table = document.getElementById('itemTable');
+      let totalCost = 0;
+
+      for (let i = 1; i < table.rows.length - 1; i++) {
+        let row = table.rows[i];
+        let quantity = parseFloat(row.cells[2].querySelector('input').value) || 0;
+        let unitCost = parseFloat(row.cells[3].querySelector('input').value) || 0;
+        let total = quantity * unitCost;
+
+        row.cells[4].querySelector('input').value = total.toFixed(2);
+        totalCost += total;
+      }
+
+      document.getElementById('totalCost').innerText = totalCost.toFixed(2);
+    }
+
+    function addRow() {
+      let table = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+      let newRow = table.insertRow();
+
+      newRow.innerHTML = `
+        <td><input type="text" class="editable" placeholder="Enter item number"></td>
+        <td><input type="text" class="editable" placeholder="Enter description"></td>
+        <td><input type="number" class="editable" placeholder="Enter quantity" oninput="updateTotals()"></td>
+        <td><input type="number" class="editable" placeholder="Enter unit cost" oninput="updateTotals()"></td>
+        <td><input type="number" class="editable" placeholder="Enter total cost" readonly></td>
+        <td><button type="button" class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+      `;
+
+      // Recalculate the total whenever a new row is added
+      updateTotals();
+    }
+
+    function deleteRow(button) {
+      // Find the row to be deleted
+      var row = button.parentNode.parentNode;
+      // Remove the row
+      row.parentNode.removeChild(row);
+      // Update the totals after deletion
+      updateTotals();
+    }
+
+    function saveAsPDF() {
+      // Hide all buttons before saving
+      document.querySelectorAll('button').forEach(button => button.style.display = 'none');
+      document.getElementById('sidebar').style.display = 'none';
+      document.getElementById('header').style.display = 'none';
+      const buttons = document.querySelectorAll('.submit-btn, .print-btn');
+      buttons.forEach(button => button.style.display = 'none');
+
+      window.print();
+
+      // Show buttons again after saving
+      document.querySelectorAll('button').forEach(button => button.style.display = 'block');
+      document.getElementById('sidebar').style.display = 'block';
+      document.getElementById('header').style.display = 'block';
+      buttons.forEach(button => button.style.display = '');
+    }
+  </script>
+
+</body>
+
+</html>
